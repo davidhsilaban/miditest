@@ -231,10 +231,6 @@ public class MainActivity extends Activity
 	Resources resources = getResources();
 
 	String format = resources.getString(R.string.format);
-	    // "Sonivox synthesizer config:\n" +
-	    // "maxVoices = %d\nnumChannels = %d\n" +
-	    // "sampleRate = %d\nmixBufferSize = %d";
-
 	String info = String.format(Locale.getDefault(), format, config[0],
 				    config[1], config[2], config[3]);
 
