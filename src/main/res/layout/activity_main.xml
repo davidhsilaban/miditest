@@ -1,62 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="RtlHardcoded"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:ignore="RtlHardcoded">
+    android:orientation="vertical">
 
   <TextView
       android:id="@+id/intro"
-      android:layout_width="wrap_content"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="8dp"
       android:gravity="center"
       android:text="@string/intro"
       android:textAppearance="?android:attr/textAppearanceMedium" />
 
-  <Button
-      android:id="@+id/c"
-      android:layout_width="wrap_content"
+  <LinearLayout
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_alignParentLeft="true"
-      android:layout_below="@+id/intro"
-      android:text="@string/c" />
-
-  <Button
-      android:id="@+id/g"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignTop="@+id/c"
-      android:layout_toRightOf="@+id/c"
-      android:text="@string/g" />
-
-  <Button
-      android:id="@+id/ants"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignLeft="@+id/c"
-      android:layout_below="@+id/c"
+      android:orientation="horizontal"
       android:layout_marginTop="8dp"
-      android:text="@string/ants" />
+      android:gravity="center">
 
-  <Button
-      android:id="@+id/nants"
-      android:layout_width="wrap_content"
+    <Button
+	android:id="@+id/c"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:text="@string/c" />
+
+    <Button
+	android:id="@+id/g"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:text="@string/g" />
+
+  </LinearLayout>
+
+  <LinearLayout
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_alignLeft="@+id/g"
-      android:layout_below="@+id/g"
+      android:orientation="horizontal"
       android:layout_marginTop="8dp"
-      android:text="@string/nants" />
+      android:gravity="center">
+
+    <Button
+	android:id="@+id/ants"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:text="@string/ants" />
+
+    <Button
+	android:id="@+id/nants"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:text="@string/nants" />
+
+  </LinearLayout>
 
   <TextView
       android:id="@+id/status"
-      android:layout_width="wrap_content"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_alignLeft="@+id/ants"
-      android:layout_below="@+id/ants"
       android:layout_marginTop="8dp"
       android:gravity="center"
       android:textAppearance="?android:attr/textAppearanceMedium" />
 
-</RelativeLayout>
+</LinearLayout>
