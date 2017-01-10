@@ -7,11 +7,12 @@
     tools:ignore="RtlHardcoded">
 
   <TextView
-      android:id="@+id/hello"
+      android:id="@+id/intro"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginBottom="8dp"
-      android:text="@string/hello_midi"
+      android:gravity="center"
+      android:text="@string/intro"
       android:textAppearance="?android:attr/textAppearanceMedium" />
 
   <Button
@@ -19,7 +20,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_alignParentLeft="true"
-      android:layout_below="@+id/hello"
+      android:layout_below="@+id/intro"
       android:text="@string/c" />
 
   <Button
@@ -43,9 +44,9 @@
       android:id="@+id/nants"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_alignBaseline="@+id/ants"
-      android:layout_alignBottom="@+id/ants"
-      android:layout_toRightOf="@+id/ants"
+      android:layout_alignLeft="@+id/g"
+      android:layout_below="@+id/g"
+      android:layout_marginTop="8dp"
       android:text="@string/nants" />
 
   <TextView
@@ -55,6 +56,7 @@
       android:layout_alignLeft="@+id/ants"
       android:layout_below="@+id/ants"
       android:layout_marginTop="8dp"
+      android:gravity="center"
       android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

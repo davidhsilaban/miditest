@@ -2,11 +2,23 @@
 <resources>
 
   <string name="app_name">MidiTest</string>
-  <string name="hello_midi">Hello midi!</string>
+  <string name="intro">
+    To test the midi driver, press the <b>C chord</b> or <b>G
+    chord</b> buttons below. The <b>Ants</b> and <b>!Ants</b> buttons
+    play and stop playing a short midi tune file. The chord buttons
+    use the driver, the tune buttons use the statdard Android midi
+    player. They should all work simultaneously.
+  </string>
 
-  <string name="c">C</string>
-  <string name="g">G</string>
+  <string name="c">C chord</string>
+  <string name="g">G chord</string>
   <string name="ants">Ants</string>
   <string name="nants">!Ants</string>
+
+  <string name="format" formatted="false">
+    Sonivox synthesizer config:\n
+    maxVoices = %d\nnumChannels = %d\n
+    sampleRate = %d\nmixBufferSize = %d
+  </string>
 
 </resources>
