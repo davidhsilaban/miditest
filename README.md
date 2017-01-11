@@ -1,4 +1,4 @@
-# MidiTest
+# MidiTest [![Build Status](https://travis-ci.org/billthefarmer/miditest.svg?branch=master)](https://travis-ci.org/billthefarmer/miditest)
 
 Test app for
 [MidiDriver](https://github.com/billthefarmer/mididriver). The app
