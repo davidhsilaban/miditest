@@ -20,4 +20,3 @@ android:
 
 script:
   - ./gradlew build
-  - if [ -f /home/travis/build/billthefarmer/miditest/build/outputs/lint-results-debug.html ]; then lynx -dump /home/travis/build/billthefarmer/miditest/build/outputs/lint-results-debug.html; fi
