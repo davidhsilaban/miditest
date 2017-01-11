@@ -4,11 +4,6 @@ language: android
 jdk:
   - oraclejdk8
 
-addons:
-  apt:
-    packages:
-      - lynx
-
 android:
   components:
     - platform-tools
