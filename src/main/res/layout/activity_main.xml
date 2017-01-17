@@ -20,21 +20,19 @@
       android:layout_height="wrap_content"
       android:orientation="horizontal"
       android:layout_marginTop="8dp"
-      style="?android:attr/buttonBarStyle"
+      tools:ignore="ButtonStyle"
       android:gravity="center">
 
     <Button
 	android:id="@+id/c"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
-	style="?android:attr/buttonBarButtonStyle"
 	android:text="@string/c" />
 
     <Button
 	android:id="@+id/g"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
-	style="?android:attr/buttonBarButtonStyle"
 	android:text="@string/g" />
 
   </LinearLayout>
@@ -44,21 +42,19 @@
       android:layout_height="wrap_content"
       android:orientation="horizontal"
       android:layout_marginTop="8dp"
-      style="?android:attr/buttonBarStyle"
+      tools:ignore="ButtonStyle"
       android:gravity="center">
 
     <Button
 	android:id="@+id/ants"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
-	style="?android:attr/buttonBarButtonStyle"
 	android:text="@string/ants" />
 
     <Button
 	android:id="@+id/nants"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
-	style="?android:attr/buttonBarButtonStyle"
 	android:text="@string/nants" />
 
   </LinearLayout>
