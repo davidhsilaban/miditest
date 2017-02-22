@@ -39,31 +39,52 @@ import android.app.Activity;
 import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.leff.midi.MidiFile;
+import com.leff.midi.event.ChannelEvent;
+import com.leff.midi.event.Controller;
+import com.leff.midi.event.MidiEvent;
+import com.leff.midi.event.NoteOff;
+import com.leff.midi.event.NoteOn;
+import com.leff.midi.event.PitchBend;
+import com.leff.midi.event.ProgramChange;
+import com.leff.midi.util.MidiEventListener;
+import com.leff.midi.util.MidiProcessor;
+
+import java.io.IOException;
 import java.util.Locale;
 
 import org.billthefarmer.mididriver.MidiDriver;
 
 public class MainActivity extends Activity
     implements View.OnTouchListener, View.OnClickListener,
-	       MidiDriver.OnMidiStartListener
-{
+	       MidiDriver.OnMidiStartListener, MidiEventListener {
     private TextView text;
 
     protected MidiDriver midi;
     protected MediaPlayer player;
+	protected MidiProcessor midiProcessor;
 
-    @Override
+	@Override
     protected void onCreate(Bundle savedInstanceState)
     {
 	super.onCreate(savedInstanceState);
 	setContentView(R.layout.activity_main);
 
-	// Create midi driver
+		// Create midi player
+		try {
+			midiProcessor = new MidiProcessor(new MidiFile(getResources().openRawResource(R.raw.gmstri00)));
+			midiProcessor.registerEventListener(this, MidiEvent.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		// Create midi driver
 
 	midi = new MidiDriver();
 
@@ -197,19 +218,27 @@ public class MainActivity extends Activity
 	switch (id)
 	{
 	case R.id.ants:
-	    if (player != null)
-	    {
-		player.stop();
-		player.release();
-	    }
+//	    if (player != null)
+//	    {
+//		player.stop();
+//		player.release();
+//	    }
+//
+//	    player = MediaPlayer.create(this, R.raw.ants);
+//	    player.start();
 
-	    player = MediaPlayer.create(this, R.raw.ants);
-	    player.start();
+		if (midiProcessor != null) {
+			midiProcessor.stop();
+			midiProcessor.reset();
+		}
+
+		midiProcessor.start();
 	    break;
 
 	case R.id.nants:
-	    if (player != null)
-		player.stop();
+//	    if (player != null)
+//		player.stop();
+		midiProcessor.stop();
 	    break;
 	}
     }
@@ -262,4 +291,38 @@ public class MainActivity extends Activity
 
 	midi.write(msg);
     }
+
+	@Override
+	public void onStart(boolean fromBeginning) {
+
+	}
+
+	@Override
+	public void onEvent(MidiEvent event, long ms) {
+		if (event instanceof ProgramChange) {
+			ProgramChange programChangeEvent = (ProgramChange) event;
+			sendMidi(programChangeEvent.getType() << 4 | programChangeEvent.getChannel(), programChangeEvent.getProgramNumber());
+		} else if (event instanceof PitchBend) {
+			PitchBend pitchBendEvent = (PitchBend) event;
+			sendMidi(pitchBendEvent.getType() << 4 | pitchBendEvent.getChannel(), pitchBendEvent.getLeastSignificantBits(), pitchBendEvent.getMostSignificantBits());
+		} else if (event instanceof Controller) {
+			Controller controllerEvent = (Controller) event;
+			sendMidi(controllerEvent.getType() << 4 | controllerEvent.getChannel(), controllerEvent.getControllerType(), controllerEvent.getValue());
+		} else if (event instanceof NoteOn){
+			NoteOn noteOnEvent = (NoteOn) event;
+			sendMidi(noteOnEvent.getType() << 4 | noteOnEvent.getChannel(), noteOnEvent.getNoteValue(), noteOnEvent.getVelocity());
+//			Log.d("NoteOn", ""+Integer.toHexString(noteOnEvent.getType() << 4 ));
+		} else if (event instanceof NoteOff){
+			NoteOff noteOffEvent = (NoteOff) event;
+			sendMidi(noteOffEvent.getType() << 4 | noteOffEvent.getChannel(), noteOffEvent.getNoteValue(), noteOffEvent.getVelocity());
+//			Log.d("NoteOn", ""+Integer.toHexString(noteOnEvent.getType() << 4 ));
+		}
+
+//		Log.d("onEvent", event.getClass().getName());
+	}
+
+	@Override
+	public void onStop(boolean finished) {
+
+	}
 }

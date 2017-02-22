@@ -27,5 +27,6 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.billthefarmer:mididriver:v1.11'
+//    compile 'com.github.billthefarmer:mididriver:v1.11'
+    compile project(':mididriver.git-debug')
 }
