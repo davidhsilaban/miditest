@@ -78,7 +78,7 @@ public class MainActivity extends Activity
 
 		// Create midi player
 		try {
-			midiProcessor = new MidiProcessor(new MidiFile(getResources().openRawResource(R.raw.gmstri00)));
+			midiProcessor = new MidiProcessor(new MidiFile(getResources().openRawResource(R.raw.ants)));
 			midiProcessor.registerEventListener(this, MidiEvent.class);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -232,7 +232,7 @@ public class MainActivity extends Activity
 			midiProcessor.reset();
 		}
 
-		midiProcessor.start();
+		if (!midiProcessor.isRunning()) midiProcessor.start();
 	    break;
 
 	case R.id.nants:
